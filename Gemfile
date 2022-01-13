@@ -42,6 +42,14 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Fake data for test
+  gem 'faker'
+  # Factory bots for test
+  gem 'factory_bot_rails'
+  # RSPEC is best tool for ruby test
+  gem 'rspec-rails', '~> 5.0.0'
+  gem 'rspec-activemodel-mocks'
+  gem 'rspec-given'
 end
 
 group :development do
@@ -55,14 +63,8 @@ group :development do
   gem 'spring'
   # Code style
   gem 'rubocop', require: false
-  # Fake data for test
-  gem 'faker'
-  # Factory bots for test
-  gem 'factory_bot_rails'
-  # RSPEC is best tool for ruby test
-  gem 'rspec-activemodel-mocks'
-  gem 'rspec-given'
-  gem 'rspec-rails'
+  # Local email
+  gem 'letter_opener'
 end
 
 group :test do

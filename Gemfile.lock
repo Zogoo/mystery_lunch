@@ -121,6 +121,10 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -306,6 +310,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   jbuilder (~> 2.7)
+  letter_opener
   listen (~> 3.3)
   pg
   puma (~> 5.0)
@@ -313,7 +318,7 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.1)
   rspec-activemodel-mocks
   rspec-given
-  rspec-rails
+  rspec-rails (~> 5.0.0)
   rubocop
   sass-rails (>= 6)
   selenium-webdriver

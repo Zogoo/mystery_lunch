@@ -4,12 +4,13 @@
 
 1. Build docker images with docker compose
 ```bash
-docker-compose build --no-cache
+docker-compose build
 ```
 
 2. Install libraries
 ```bash
-docker-compose run --rm rails bundle install --path "vendor/bundle"
+docker-compose run --rm rails bundle install
+docker-compose run --rm rails yarn install
 ```
 
 3. Prepare db

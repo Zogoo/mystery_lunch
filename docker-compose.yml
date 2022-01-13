@@ -8,7 +8,7 @@ services:
     <<: *internal_dockerfile
     container_name: mystery-lunch
     volumes:
-      - bundler-cache:/app/vendor/bundle
+      - bundle-cache:/bundler
       - .:/app
     working_dir: /app
     links:
@@ -16,7 +16,7 @@ services:
     depends_on:
       - postgres_rds
     environment:
-      BUNDLE_PATH: "vendor/bundle"
+      BUNDLE_PATH: /bundler
       POSTGRES_HOST: postgres_rds
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
@@ -33,4 +33,4 @@ services:
       POSTGRES_PASSWORD: password
 
 volumes:
-  bundler-cache:
+  bundle-cache:
