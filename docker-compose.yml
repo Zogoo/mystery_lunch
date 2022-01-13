@@ -1,0 +1,36 @@
+version: '3'
+x-internal_dockerfile: &internal_dockerfile
+  build:
+    context: ./
+    dockerfile: Dockerfile
+services:
+  rails:
+    <<: *internal_dockerfile
+    container_name: mystery-lunch
+    volumes:
+      - bundler-cache:/app/vendor/bundle
+      - .:/app
+    working_dir: /app
+    links:
+      - postgres_rds
+    depends_on:
+      - postgres_rds
+    environment:
+      BUNDLE_PATH: "vendor/bundle"
+      POSTGRES_HOST: postgres_rds
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - 3000:3000
+    command: bundle exec rails s -b0 -p 3000
+  postgres_rds:
+    image: postgres:13.3-alpine3.14
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: mystery_lunch_development
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+
+volumes:
+  bundler-cache:
