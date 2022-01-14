@@ -5,6 +5,7 @@
 1. Build docker images with docker compose
 ```bash
 docker-compose build
+docker-compose up # this will create required containers but fails
 ```
 
 2. Install libraries
