@@ -71,9 +71,8 @@ class MysteryMatcher
 
       user_by_min_conn.selected = true
       next_partner.selected = true
-
-      @mystery_pairs.push([user_by_min_conn.attributes.slice(:id, :department),
-                           next_partner.attributes.slice(:id, :department)])
+      @mystery_pairs.push([user_by_min_conn.attributes.slice('id', 'department').with_indifferent_access,
+                           next_partner.attributes.slice('id', 'department').with_indifferent_access])
 
       next_partner.partners.each do |partner_id|
         partner = find_user_by_id(partner_id)
