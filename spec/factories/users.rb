@@ -3,7 +3,7 @@ FactoryBot.define do
     first_name { Faker::Movies::LordOfTheRings.character }
     last_name { Faker::Movies::StarWars.character }
     email { Faker::Internet.email }
-    deparment { ['operations', 'sales', 'marketing', 'risk', 'management', 'finance', 'HR', 'development and data'].sample }
+    department { ['operations', 'sales', 'marketing', 'risk', 'management', 'finance', 'HR', 'development and data'].sample }
 
     # Flields for devise authentication
     password { Faker::Crypto.md5 }

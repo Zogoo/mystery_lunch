@@ -3,7 +3,7 @@
 # Main thing of this logic is selecting user who has minimum connection from other users.
 # That will allow to have more chance to select all users for partner.
 # For example:
-# A, B, C users has following connections excluding old partner and same deparment
+# A, B, C users has following connections excluding old partner and same department
 #       A
 #     //  \\
 #    B  -  C
@@ -98,7 +98,7 @@ class MysteryMatcher
     return if odd_user.nil?
 
     mystery_pair = mystery_pairs.find do |partners|
-      partners[0][:deparment] != odd_user[:deparment] && partners[1][:deparment] != odd_user[:deparment]
+      partners[0][:department] != odd_user[:department] && partners[1][:department] != odd_user[:department]
     end
 
     raise 'Odd user cannot be added to any pairs' if mystery_pair.nil?

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2022_01_13_171032) do
     t.string "first_name"
     t.string "last_name"
     t.integer "status", default: 0, null: false
-    t.string "deparment", default: "", null: false
+    t.string "department", default: "", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
