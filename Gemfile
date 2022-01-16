@@ -50,6 +50,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rspec-activemodel-mocks'
   gem 'rspec-given'
+  # Benchmark test
+  gem 'rspec-benchmark'
 end
 
 group :development do

@@ -66,6 +66,8 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::Test::IntegrationHelpers, type: :feature
+  # RSPEC benchmark
+  config.include RSpec::Benchmark::Matchers
 
   # Include factory bot that help to create test data
   config.include FactoryBot::Syntax::Methods
