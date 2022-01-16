@@ -22,4 +22,8 @@ class User < ApplicationRecord
   def email_changed?
     false
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

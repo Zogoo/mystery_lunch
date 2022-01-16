@@ -2,30 +2,91 @@
 
 <h1>Users</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%=
+    link_to_if(current_user.nil?, "Login", new_user_session_path, class: 'btn btn-primary m-5') do
+        link_to('Sign out',  destroy_user_session_path, :method => 'delete', class: 'btn btn-danger m-5')
+    end
+%>
 
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-
-  <%=
-      link_to_if(current_user.nil?, "Login", new_user_session_path, class: 'btn btn-primary m-5') do
-          link_to('Sign out',  destroy_user_session_path, :method => 'delete', class: 'btn btn-danger m-5')
-      end
-  %>
-</table>
-
-<br>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css" integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA=" crossorigin="anonymous" />
+<div class="container mt-3 mb-4">
+<div class="col-lg-9 mt-4 mt-lg-0">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+          <table class="table manage-candidates-top mb-0">
+            <thead>
+              <tr>
+                <th>User Name</th>
+                <th class="text-center">Status</th>
+                <th class="action text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% @users.each do |user| %>
+              <tr class="candidates-list">
+                <td class="title">
+                  <div class="thumb">
+                    <img class="img-fluid" src="<%=user.photo%>" alt="">
+                  </div>
+                  <div class="candidate-list-details">
+                    <div class="candidate-list-info">
+                      <div class="candidate-list-title">
+                        <h5 class="mb-0">
+                          <%= link_to user do %>
+                            <%= user.full_name %><br />
+                          <% end %>
+                        </h5>
+                      </div>
+                      <div class="candidate-list-option">
+                        <ul class="list-unstyled">
+                          <li><i class="fas fa-filter pr-1"></i><%= user.department %></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td class="candidate-list-favourite-time text-center">
+                  <span class="candidate-list-time order-1"><%= user.status %></span>
+                </td>
+                <td>
+                  <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                    <li>
+                        <%= link_to user do %>
+                          <i class="far fa-eye"></i>
+                        <% end %>
+                    </li>
+                    <li>
+                      <%= link_to edit_user_path(user) do %>
+                        <i class="fas fa-pencil-alt"></i>
+                      <% end %>
+                    </li>
+                    <li>
+                      <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                        <i class="far fa-trash-alt"></i>
+                      <% end %>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+          <div class="text-center mt-3 mt-sm-3">
+            <ul class="pagination justify-content-center mb-0">
+              <li class="page-item disabled"> <span class="page-link">Prev</span> </li>
+              <li class="page-item active" aria-current="page"><span class="page-link">1 </span> <span class="sr-only">(current)</span></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">...</a></li>
+              <li class="page-item"><a class="page-link" href="#">25</a></li>
+              <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'New User', new_user_path %>
