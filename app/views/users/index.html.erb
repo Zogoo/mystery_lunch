@@ -18,6 +18,12 @@
       </tr>
     <% end %>
   </tbody>
+
+  <%=
+      link_to_if(current_user.nil?, "Login", new_user_session_path, class: 'btn btn-primary m-5') do
+          link_to('Sign out',  destroy_user_session_path, :method => 'delete', class: 'btn btn-danger m-5')
+      end
+  %>
 </table>
 
 <br>
