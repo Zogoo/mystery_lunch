@@ -74,14 +74,6 @@ RSpec.describe MysteryMatcher do
         expect { subject }.to perform_under(1).sec
       end
     end
-
-    # context 'bench mark test for 1000 users' do
-    #   let!(:users) { create_list(:user, 1_000) }
-
-    #   it 'should perform under 3 seconds' do
-    #     expect { subject }.to perform_under(3).sec
-    #   end
-    # end
   end
 
   describe 'take_care_odd_user' do

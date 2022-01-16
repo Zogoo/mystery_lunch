@@ -7,6 +7,4 @@ class User < ApplicationRecord
 
   mount_uploader :photo, PhotoUploader
   enum status: %i[active suspended]
-
-  attr_accessor :partners, :connection, :selected
 end
