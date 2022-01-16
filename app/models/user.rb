@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  extend UsersHelper
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -11,6 +12,7 @@ class User < ApplicationRecord
   # Validations
   validates :email, uniqueness: true
   validates :username, uniqueness: true
+  validates_inclusion_of :department, in: default_deparments
 
   # Email is not required to use it
   def email_required?
