@@ -14,13 +14,13 @@
  *= require_self
  */
 
-.pagination .first{
+.pagination .first {
   margin-left: 0;
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
 
-.pagination .last{
+.pagination .last {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
@@ -33,25 +33,26 @@
   border-radius: 0.25rem;
 }
 
-.pagination span, .pagination span.gap {
-    position: relative;
-    display: block;
-    padding: 0.5rem 0.75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    color: #007bff;
-    background-color: #fff;
-    border: 1px solid #dee2e6;
+.pagination span,
+.pagination span.gap {
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #007bff;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
 }
 
 .pagination span.current {
-    position: relative;
-    display: block;
-    padding: 0.5rem 0.75rem;
-    margin-left: -1px;
-    line-height: 1.25;
-    z-index: 3;
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+  position: relative;
+  display: block;
+  padding: 0.5rem 0.75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  z-index: 3;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
 }
