@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
 
     shared_examples 'failed creation' do
       it 'will raise error' do
-        expect { subject }.to raise_error
+        expect { subject }.to raise_error ActiveRecord::RecordInvalid
       end
     end
 
