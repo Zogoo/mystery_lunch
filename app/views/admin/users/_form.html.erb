@@ -3,7 +3,7 @@
     <a class="nav-link active ms-0" href="#" target="__blank">Profile</a>
 </nav>
 <hr class="mt-0 mb-4">
-<%= form_with(model: user, url: admin_users_path) do |form| %>
+<%= form_with(model: user, url: url) do |form| %>
     <% if user.errors.any? %>
         <div id="error_explanation">
         <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>

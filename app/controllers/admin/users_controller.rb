@@ -3,6 +3,7 @@ class Admin::UsersController < Admin::BaseController
   layout 'application'
   before_action :authenticate_user!
   before_action :require_admin_previledge!
+  before_action :set_user, only: %i[show edit update destroy]
 
   # GET /users or /users.json
   def index
@@ -39,8 +40,8 @@ class Admin::UsersController < Admin::BaseController
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to admin_users_url(@user), notice: 'User was successfully updated.' }
+      if @user.update(user_params.select! { |_, v| v.present? })
+        format.html { redirect_to admin_user_url(@user), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }

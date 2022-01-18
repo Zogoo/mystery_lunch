@@ -51,7 +51,7 @@
                 <td>
                   <ul class="list-unstyled mb-0 d-flex justify-content-end">
                     <li>
-                        <%= link_to user do %>
+                        <%= link_to admin_user_path(user) do %>
                           <i class="far fa-eye"></i>
                         <% end %>
                     </li>
@@ -61,7 +61,7 @@
                       <% end %>
                     </li>
                     <li>
-                      <%= link_to user, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                      <%= link_to admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } do %>
                         <i class="far fa-trash-alt"></i>
                       <% end %>
                     </li>
