@@ -1,0 +1,16 @@
+:concurrency: 25
+:queues:
+  - default
+  - mailers
+  - low
+:schedule:
+  # field          allowed values
+  # -----          --------------
+  # minute         0-59
+  # hour           0-23
+  # day of month   1-31
+  # month          1-12 (or names, see below)
+  # day of week    0-7 (0 or 7 is Sunday, or use names)
+  MysteryPairFinderWorker:
+    cron: '0 0 1 * *'   # Every month's 1st day 00:00
+    queue: default

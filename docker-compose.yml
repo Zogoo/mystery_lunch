@@ -20,6 +20,7 @@ services:
       POSTGRES_HOST: postgres_rds
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+      REDIS_URL: redis
     ports:
       - 3002:3000
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -34,6 +35,32 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
+  redis:
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data"
+
+  sidekiq:
+    <<: *internal_dockerfile
+    container_name: sidekiq-worker
+    volumes:
+      - bundler-cache:/usr/local/bundle
+      - .:/app
+    working_dir: /app
+    environment:
+      BUNDLE_PATH: /usr/local/bundle
+      REDIS_URL: redis
+    links:
+      - postgres_rds
+      - redis
+    depends_on:
+      - postgres_rds
+      - redis
+    command: bundle exec sidekiq -C config/sidekiq.yml
+
 volumes:
   bundler-cache:
   db_data:
+  redis-data:
