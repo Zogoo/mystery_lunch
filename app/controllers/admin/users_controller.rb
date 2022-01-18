@@ -27,7 +27,7 @@ class Admin::UsersController < Admin::BaseController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to user_url(@user), notice: 'User was successfully created.' }
+        format.html { redirect_to admin_users_url(@user), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class Admin::UsersController < Admin::BaseController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: 'User was successfully updated.' }
+        format.html { redirect_to admin_users_url(@user), notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -68,6 +68,14 @@ class Admin::UsersController < Admin::BaseController
 
   # Only allow a list of trusted parameters through.
   def user_params
-    params.fetch(:user, {})
+    params.require(:user).permit(
+      :photo,
+      :username,
+      :department,
+      :first_name,
+      :last_name,
+      :email,
+      :password
+    )
   end
 end

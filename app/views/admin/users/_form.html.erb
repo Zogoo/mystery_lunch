@@ -3,7 +3,7 @@
     <a class="nav-link active ms-0" href="#" target="__blank">Profile</a>
 </nav>
 <hr class="mt-0 mb-4">
-<%= form_with(model: user) do |form| %>
+<%= form_with(model: user, url: admin_users_path) do |form| %>
     <% if user.errors.any? %>
         <div id="error_explanation">
         <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -27,10 +27,9 @@
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                     <!-- Profile picture upload button-->
                     <%= form.file_field :photo, {
-                    name: "logo",
-                    required: !user.photo?,
-                    accept: 'image/png, image/jpeg',
-                    # class: "btn btn-primary"
+                        required: !user.photo?,
+                        accept: 'image/png, image/jpeg',
+                        # class: "btn btn-primary"
                     } %>
                 </div>
             </div>
@@ -63,13 +62,18 @@
                             <!-- Form Group (organization name)-->
                             <div class="col-md-6">
                                 <%= form.label :department, class: "small mb-1" %><br />
-                                <%= form.text_field :department, autofocus: true, autocomplete: "department", class: "form-control" %>
+                                <%= form.select :department, default_deparments.map { |value| [ value, value ] }, class: "form-control" %>
                             </div>
                         </div>
                         <!-- Form Group (email address)-->
                         <div class="mb-3">
                             <%= form.label :email, class: "small mb-1" %>
                             <%= form.email_field :email, autocomplete: "email", class: "form-control" %>
+                        </div>
+                        <!-- Form Group (password)-->
+                        <div class="mb-3">
+                            <%= form.label :password, class: "small mb-1" %>
+                            <%= form.password_field :password, autocomplete: "off", class: "form-control" %>
                         </div>
                         <!-- Save changes button-->
                         <%= form.submit class: "btn btn-primary" %>
