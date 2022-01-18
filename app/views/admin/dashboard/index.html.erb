@@ -82,11 +82,10 @@
                                         </td>
                                         <td>
                                             <div class="team">
-                                                <% users.each_with_index do |user, index| %>
+                                                <% users.take(3).each_with_index do |user, index| %>
                                                     <a href="javascript: void(0);" class="team-member" data-toggle="tooltip" data-placement="top" title="" data-original-title="Roger Drake">
                                                         <img src="<%= user.photo %>" class="rounded-circle avatar-xs" alt="" />
                                                     </a>
-                                                    <% break if index > 3%>
                                                 <% end %>
                                             </div>
                                         </td>

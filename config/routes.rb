@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
   root to: 'home#index'
   devise_for :users
-  resources :users
+  resources :users, only: %i[index show edit update]
 
   namespace :admin do
     get 'dashboard/index'
