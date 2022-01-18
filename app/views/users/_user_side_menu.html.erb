@@ -5,8 +5,10 @@
     <a href="#" class="text-white"><i class="fa fa-user"></i> <%= @partner_ids.size %> partners</a>
   </div><!--profile card ends-->
   <ul class="nav-news-feed">
-    <li><i class="fa fa-users icon2"></i><div><%= link_to 'Pairs', users_path %></div></li>
-    <li><i class="fa fa-user icon3"></i><div><%= link_to 'Profile', current_user %></div></li>
+    <li><i class="fa fa-users icon1"></i><div><%= link_to 'Pairs', users_path %></div></li>
+    <li><i class="fa fa-user icon2"></i><div><%= link_to 'Profile', current_user %></div></li>
+    <li><i class="fa fa-users-cog icon3"></i><div><%= admin_panel_url %></div></li>
+    <li><i class="fa fa-sign-out-alt icon4"></i><div><%= link_to('Sign out',  destroy_user_session_path, :method => 'delete') %></div></li>
   </ul><!--news-feed links ends-->
   <div id="chat-block">
     <div class="title">Partners</div>
