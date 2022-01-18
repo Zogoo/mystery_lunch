@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string   :last_name
       t.integer  :status, null: false, default: 0
       t.string   :department, null: false, default: ''
+      t.integer  :permission, null: false, default: 0
 
       t.timestamps
     end

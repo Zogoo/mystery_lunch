@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   mount_uploader :photo, PhotoUploader
   enum status: %i[active suspended]
+  enum permission: %i[user admin]
 
   # Validations
   validates :email, uniqueness: true
