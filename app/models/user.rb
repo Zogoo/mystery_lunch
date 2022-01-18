@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   # Validations
   validates :email, uniqueness: true
-  validates :username, uniqueness: true
+  validates :username, uniqueness: true, presence: true, allow_blank: false
   validates_inclusion_of :department, in: default_deparments
 
   scope :by_department, lambda { |value|

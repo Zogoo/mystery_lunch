@@ -3,7 +3,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
     create_table :users do |t|
       # Application related items
       t.string   :photo
-      t.string   :username, null: false, default: ''
+      t.string   :username, null: false
       t.string   :first_name
       t.string   :last_name
       t.integer  :status, null: false, default: 0
@@ -12,5 +12,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :users, :username, unique: true
   end
 end
