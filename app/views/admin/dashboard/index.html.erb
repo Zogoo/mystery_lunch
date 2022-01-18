@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container admin_contianer">
     <div class="row">
         <div class="col-xl-3 col-md-6">
             <div class="card bg-pattern">
                 <div class="card-body">
                     <div class="float-right">
-                        <i class="fa fa-archive text-primary h4 ml-3"></i>
+                        <i class="fa fa-users text-primary h4 ml-3"></i>
                     </div>
                     <h5 class="font-size-20 mt-0 pt-1"><%= @active_users %></h5>
                     <p class="text-muted mb-0"><%= t('dashboard.active_user_count') %></p>
@@ -15,7 +15,7 @@
             <div class="card bg-pattern">
                 <div class="card-body">
                     <div class="float-right">
-                        <i class="fa fa-th text-primary h4 ml-3"></i>
+                        <i class="fa fa-users text-primary h4 ml-3"></i>
                     </div>
                     <h5 class="font-size-20 mt-0 pt-1"><%= @suspendend_users %></h5>
                     <p class="text-muted mb-0"><%= t('dashboard.suspended_user_count') %></p>
@@ -26,7 +26,7 @@
             <div class="card bg-pattern">
                 <div class="card-body">
                     <div class="float-right">
-                        <i class="fa fa-file text-primary h4 ml-3"></i>
+                        <i class="fa fa-th text-primary h4 ml-3"></i>
                     </div>
                     <h5 class="font-size-20 mt-0 pt-1"><%=  @deparment_count %></h5>
                     <p class="text-muted mb-0"><%= t('dashboard.department') %></p>
@@ -40,10 +40,14 @@
                         <div class="form-group mb-0">
                             <label><%= t('dashboard.search') %></label>
                             <div class="input-group mb-0">
-                                <input type="text" class="form-control" placeholder="Search..." aria-describedby="project-search-addon" />
-                                <div class="input-group-append">
-                                    <button class="btn btn-danger" type="button" id="project-search-addon"><i class="fa fa-search search-icon font-12"></i></button>
-                                </div>
+                                <%= form_tag(admin_dashboard_index_path, method: :get) do %>
+                                    <%= text_field_tag :search_value, params[:search_value], placeholder: "Search...", class: "form-control" %>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-danger" id="seach-by-department">
+                                            <i class="fa fa-search search-icon font-12"></i>
+                                        </button>
+                                    </div>
+                                <% end %>
                             </div>
                         </div>
                     </form>
