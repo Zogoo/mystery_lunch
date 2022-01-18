@@ -79,4 +79,48 @@ RSpec.describe User, type: :model do
       it_behaves_like 'failed creation'
     end
   end
+
+  describe 'seach by attributes' do
+    let(:users) { create_list(:user, 5) }
+
+    shared_examples 'return posstive number of user' do
+      it 'will return users' do
+        expect(subject.count).to be > 0
+      end
+    end
+
+    context 'search_by_department' do
+      subject do
+        described_class.by_department(users.first.department)
+      end
+
+      it_behaves_like 'return posstive number of user'
+    end
+
+    context 'search_by_first_name' do
+      subject do
+        described_class.by_first_name(users.first.first_name)
+      end
+
+      it_behaves_like 'return posstive number of user'
+    end
+
+    context 'search_by_last_name' do
+      subject do
+        described_class.by_last_name(users.first.last_name)
+      end
+
+      it_behaves_like 'return posstive number of user'
+    end
+  end
+
+  describe 'custom methods' do
+    let(:user) { create(:user) }
+
+    context 'full_name' do
+      it 'will genereate full name from first and last name' do
+        expect(user.full_name).to eq("#{user.first_name} #{user.last_name}")
+      end
+    end
+  end
 end
