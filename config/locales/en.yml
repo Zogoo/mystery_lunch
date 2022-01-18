@@ -47,3 +47,6 @@ en:
       progress: 'Progress'
       status_complete: 'Complete'
       status_inprogress: 'In-Progress'
+  common:
+    errors:
+      unauthorized_request: 'You are not allowed to access to here.'
