@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="profile-card">
+    <img src="<%= current_user.photo %>" alt="user" class="profile-photo">
+    <h5><a href="#" class="text-white"><%= current_user.full_name %></a></h5>
+    <a href="#" class="text-white"><i class="fa fa-user"></i> <%= @partner_ids.size %> partners</a>
+  </div><!--profile card ends-->
+  <ul class="nav-news-feed">
+    <li><i class="fa fa-users icon1"></i><div><%= link_to 'Pairs', users_path %></div></li>
+    <li><i class="fa fa-user icon2"></i><div><%= link_to 'Profile', current_user %></div></li>
+    <li><i class="fa fa-users-cog icon3"></i><div><%= admin_panel_url %></div></li>
+    <li><i class="fa fa-sign-out-alt icon4"></i><div><%= link_to('Sign out',  destroy_user_session_path, :method => 'delete') %></div></li>
+  </ul><!--news-feed links ends-->
+  <div id="chat-block">
+    <div class="title">Partners</div>
+    <ul class="online-users list-inline">
+      <% @partners.take(3).each do |partner| %>
+        <li>
+          <a href="<%= user_path(partner) %>" title="<%= partner.full_name %>">
+            <img src="<%= partner.photo %>" alt="user" class="img-responsive profile-photo"><%= online_icon(partner) %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div><!--chat block ends-->
+</div>

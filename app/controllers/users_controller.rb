@@ -1,70 +1,55 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :set_user, only: %i[show]
+  before_action :find_partners
+  layout 'application'
 
   # GET /users or /users.json
-  def index
-    @users = User.all
-  end
+  def index; end
 
   # GET /users/1 or /users/1.json
-  def show
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
-  end
+  def show; end
 
   # GET /users/1/edit
-  def edit
-  end
-
-  # POST /users or /users.json
-  def create
-    @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  def edit; end
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
-        format.json { render :show, status: :ok, location: @user }
+      if self_update? && current_user.update(user_params)
+        format.html { redirect_to user_url(current_user), notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: current_user }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /users/1 or /users/1.json
-  def destroy
-    @user.destroy
+  private
 
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: "User was successfully destroyed." }
-      format.json { head :no_content }
-    end
+  def set_user
+    @user = User.find(params[:id])
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  def find_partners
+    @partner_ids = MysteryPair.where(user: current_user).order(:lunch_date).pluck(:partner_id)
+    @partners = User.where(id: @partner_ids)
+    @limit_show = params[:more].present? ? @partners.size : 10
+  end
 
-    # Only allow a list of trusted parameters through.
-    def user_params
-      params.fetch(:user, {})
-    end
+  # Only allow a list of trusted parameters through.
+  def user_params
+    params.require(:user).permit(
+      :photo,
+      :username,
+      :first_name,
+      :last_name,
+      :email
+    )
+  end
+
+  def self_update?
+    params[:id] == current_user.id.to_s
+  end
 end

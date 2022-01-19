@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+include FactoryBot::Syntax::Methods
+
+create_list(:user, 10, password: '!QAZ2wsx')

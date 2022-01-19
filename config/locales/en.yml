@@ -30,4 +30,23 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  dashboard:
+    active_user_count: 'Number of active users'
+    suspended_user_count: 'Number of suspended users'
+    department: 'Deparment'
+    search: 'Search'
+    info:
+      title:
+        id: '#'
+        department: 'Department'
+        last_user: 'New user date'
+        status: 'Status'
+        members: 'Users'
+        progress: 'Progress'
+        action: 'Action'
+      progress: 'Progress'
+      status_complete: 'Complete'
+      status_inprogress: 'In-Progress'
+  common:
+    errors:
+      unauthorized_request: 'You are not allowed to access to here.'

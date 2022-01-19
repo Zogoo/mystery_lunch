@@ -1,0 +1,59 @@
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="text-center"><img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-circle"><br>Sign up</h2>
+        </div>
+        <div class="modal-body">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "users/shared/error_messages", resource: resource %>
+
+              <div class="form-group">
+                <%= f.label :username %><br />
+                <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :department %><br />
+                <%= f.text_field :department, autofocus: true, autocomplete: "department" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :first_name %><br />
+                <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :last_name %><br />
+                <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :password %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "new-password" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.submit "Sign up", class: "btn btn-primary btn-md btn-block"%>
+                <%# <span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span> %>
+                <%= render "users/shared/links" %>
+              </div>
+            <% end %>
+        </div>
+        <div class="modal-footer">
+            <div class="col-md-12">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+          </div>	
+        </div>
+    </div>
+  </div>
+</div>
+<%= render "users/shared/links" %>
