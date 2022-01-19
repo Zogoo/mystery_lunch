@@ -25,7 +25,7 @@ RSpec.describe MysteryMatcher do
       described_object.init_connection_graph
     end
 
-    context 'when there is no old data pairs exist' do
+    context 'when there is no old pair data exist' do
       it 'should return array of pair of users' do
         pairs = subject
         expect(pairs).to be_a(Array)
@@ -45,7 +45,7 @@ RSpec.describe MysteryMatcher do
       end
     end
 
-    context 'when constant userlist' do
+    context 'when known userlist' do
       let!(:users) do
         [create(:user, id: 1, department: 'operations'),
          create(:user, id: 2, department: 'operations'),
@@ -59,6 +59,35 @@ RSpec.describe MysteryMatcher do
 
       it 'should return expected result' do
         expect(subject).to eq([
+                                [{ id: 5, department: 'development and data' }, { id: 1, department: 'operations' }],
+                                [{ id: 7, department: 'development and data' }, { id: 2, department: 'operations' }],
+                                [{ id: 8, department: 'development and data' }, { id: 3, department: 'risk' }],
+                                [{ id: 4, department: 'management' }, { id: 6, department: 'marketing' }]
+                              ])
+      end
+    end
+
+    context 'when old pair exist' do
+      let!(:users) do
+        [create(:user, id: 1, department: 'operations'),
+         create(:user, id: 2, department: 'operations'),
+         create(:user, id: 3, department: 'risk'),
+         create(:user, id: 4, department: 'management'),
+         create(:user, id: 5, department: 'development and data'),
+         create(:user, id: 6, department: 'marketing'),
+         create(:user, id: 7, department: 'development and data'),
+         create(:user, id: 8, department: 'development and data')]
+      end
+      let(:converted_mystery_pair) {
+        {
+          5 => 1, 7 => 2, 8 => 3, 4 => 6,
+          1 => 5, 2 => 7, 3 => 8, 6 => 4
+        }
+      }
+      let(:described_object) { described_class.new(users, converted_mystery_pair) }
+
+      it 'should not return old partner data' do
+        expect(subject).not_to eq([
                                 [{ id: 5, department: 'development and data' }, { id: 1, department: 'operations' }],
                                 [{ id: 7, department: 'development and data' }, { id: 2, department: 'operations' }],
                                 [{ id: 8, department: 'development and data' }, { id: 3, department: 'risk' }],

@@ -31,6 +31,14 @@ docker-compose up
 
 # Matching logic
 
+Matching logic is select users based on users possible connection with other users.
+It will start to choose users from lowest connection of users. And this will prepend to user
+stay without selection.
+
+Logic complexity is O(n^2) which loop all N numbers users twice. 
+
+More about: app/services/mystery_matcher.rb
+
 **Benchmark test**
 
 
@@ -50,4 +58,16 @@ Mystery matching
       74.757023   1.552273  76.309296 ( 77.806297)
       74.757023   1.552273  76.309296 ( 77.806297)
 ```
+
+### BUGFIX ###
+
+Converting to old partner data into hash only storing to single user from multiple partner data.
+I should find another quick accessible way to convert that data.
+Query or Another search by loop will increase complexity to O(n^3)
+
+## How it runs
+
+Sidekiq scheduled job will run it every 1st day of each month.
+Data will be stored into MysteryPair table as self joined table.
+
 
