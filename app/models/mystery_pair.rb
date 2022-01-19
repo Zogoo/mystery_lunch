@@ -17,4 +17,8 @@ class MysteryPair < ApplicationRecord
     end
     pair_hash
   }
+
+  scope :by_user, lambda { |user|
+    where(user: user).or(MysteryPair.where(partner: user))
+  }
 end

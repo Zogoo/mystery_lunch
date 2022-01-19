@@ -17,7 +17,7 @@ module UsersHelper
   end
 
   def current_user_edit_url
-    link_to('Edit', edit_user_path(user)) if current_user.id.to_s == params[:id]
+    link_to('Edit', edit_user_path(current_user)) if current_user.id.to_s == params[:id]
   end
 
   def admin_panel_url

@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def find_partners
-    @partner_ids = MysteryPair.where(user: current_user).order(:lunch_date).pluck(:partner_id)
+    @partner_ids = MysteryPair.by_user(current_user).order(:lunch_date).pluck(:partner_id)
     @partners = User.where(id: @partner_ids)
     @limit_show = params[:more].present? ? @partners.size : 10
   end

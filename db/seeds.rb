@@ -1,10 +1,23 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 include FactoryBot::Syntax::Methods
 
-create_list(:user, 10, password: '!QAZ2wsx')
+create_list(:user, 100, password: '!QAZ2wsx')
+
+# TODO: Resolve duplicated code with mystery pair worker
+
+def create_pair_data!(user, partner)
+  MysteryPair.create!(user_id: user[:id], partner_id: partner[:id], lunch_date: Date.today)
+end
+
+matcher = MysteryMatcher.new(User.all)
+matcher.find_mystery_pairs.each { |user, partner| create_pair_data!(user, partner) }
+partner1, partner2, odd_user = matcher.take_care_odd_user
+return if partner1.nil?
+
+create_pair_data!(odd_user, partner1)
+create_pair_data!(odd_user, partner2)
+
+puts '-------- ADMIN USER INFO -----------'
+admin = User.all.sample
+admin.admin!
+puts "username: #{admin.username}"
+puts 'password: !QAZ2wsx'
