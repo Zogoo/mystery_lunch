@@ -100,29 +100,26 @@ Mystery lunch web service will be devided as 3 parts
    ![plot](./docs/admin_users.png)
 
 # Work in progress
-Homepage
+
+1. Homepage
 • Display the current mystery partners  - _Back-end side feature is ready, only need to show next partner of next month_
 • For every employee, display: photo, name and department name - _Done._
 • Filter by department - _Works in admin/dashboard. But also need to add into admin/users page_
 • Allow the user to see all mystery partners from previous months - _Back-end side feature is ready,_
-Employees management
+2. Employees management
 • Restricted area (requires authentication) - _Done._
 • Manage employees (index, display, create, edit and delete) - _Done._
-• Departments: operations, sales, marketing, risk, management, finance, HR, development - _Done, whitelisted logic_
-and data
+• Departments: operations, sales, marketing, risk, management, finance, HR, development and data - _Done, whitelisted logic_
 • The employee deletion should only disable the employee for future mystery lunches - _Not started yet, but User has status (active, suspended) and active users always will be choosen for matching_
-• When an employee is created, he/she should join an existing mystery pair (3 people
-mystery lunch) - _Not started yet, but planning to re-use odd user logic_
+• When an employee is created, he/she should join an existing mystery pair (3 people mystery lunch) - _Not started yet, but planning to re-use odd user logic_
 • When an employee is deleted:
-o This employee had one mystery partner: the remaining employee should join another existing mystery pair (3 people mystery lunch) - _Done._
-o This employee had two mystery partners: nothing should be done - _Done._
-Mystery partners selection
+      o This employee had one mystery partner: the remaining employee should join another existing mystery pair (3 people mystery lunch) - _Done._
+      o This employee had two mystery partners: nothing should be done - _Done._
+3. Mystery partners selection
 Must have
 • The selection should be automatically performed on 1st day of each month  - _Done._
-• Two employees should not be selected to be partners if they were partners in the last 3
-months  - _Done._
-• When the number of employees is odd, the remaining employee should join an existing
-mystery pair (3 people mystery lunch). The department of these three employees should be different. - _Done._
+• Two employees should not be selected to be partners if they were partners in the last 3 months  - _Done._
+• When the number of employees is odd, the remaining employee should join an existing mystery pair (3 people mystery lunch). The department of these three employees should be different. - _Done._
 • Automated tests - _Work In Progress_
 • Use your creativity and build a new feature of your choice _Work In Progress_
 
