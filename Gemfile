@@ -37,6 +37,10 @@ gem 'dotenv-rails'
 gem 'carrierwave'
 # Pagination gem
 gem 'kaminari'
+# background job
+gem 'sidekiq'
+# Scheduled jobs
+gem 'sidekiq-scheduler'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

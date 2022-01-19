@@ -91,6 +91,7 @@ GEM
       ssrf_filter (~> 1.0)
     childprocess (4.1.0)
     concurrent-ruby (1.1.9)
+    connection_pool (2.2.5)
     crass (1.0.6)
     database_cleaner-active_record (2.0.1)
       activerecord (>= 5.a)
@@ -107,7 +108,10 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    e2mmap (0.1.0)
     erubi (1.10.0)
+    et-orbi (1.2.6)
+      tzinfo
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -116,6 +120,9 @@ GEM
     faker (2.19.0)
       i18n (>= 1.6, < 2)
     ffi (1.15.5)
+    fugit (1.5.2)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.4)
     given_core (3.8.2)
       sorcerer (>= 0.3.7)
     globalid (1.0.0)
@@ -172,6 +179,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.6.0)
     rack (2.2.3)
     rack-mini-profiler (2.3.3)
@@ -211,6 +219,7 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    redis (4.5.1)
     regexp_parser (2.2.0)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -264,6 +273,8 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
+    rufus-scheduler (3.8.1)
+      fugit (~> 1.1, >= 1.1.6)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -279,6 +290,17 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    sidekiq (6.3.1)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
+    sidekiq-scheduler (3.1.0)
+      e2mmap
+      redis (>= 3, < 5)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 3)
+      thwait
+      tilt (>= 1.4.0)
     sorcerer (2.0.1)
     spring (4.0.0)
     sprockets (4.0.2)
@@ -290,6 +312,8 @@ GEM
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
     thor (1.2.1)
+    thwait (0.2.0)
+      e2mmap
     tilt (2.0.10)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
@@ -349,6 +373,8 @@ DEPENDENCIES
   rubocop
   sass-rails (>= 6)
   selenium-webdriver
+  sidekiq
+  sidekiq-scheduler
   spring
   turbolinks (~> 5)
   tzinfo-data

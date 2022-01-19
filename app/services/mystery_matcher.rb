@@ -15,6 +15,7 @@ class MysteryMatcher
 
   def initialize(users, old_partners = {})
     self.users = users
+    # BUGFIX: Hash is only allowing to store only one user from several pairs
     self.old_partners = old_partners
     self.matching_data = {}
     @mystery_pairs = []
@@ -103,7 +104,7 @@ class MysteryMatcher
       partners[0][:department] != odd_user[:department] && partners[1][:department] != odd_user[:department]
     end
 
-    raise 'Odd user cannot be added to any pairs' if mystery_pair.nil?
+    raise 'Odd user could be added to any pairs' if mystery_pair.nil?
 
     mystery_pair.push(odd_user.slice(:id, :department))
   end
