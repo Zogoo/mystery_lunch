@@ -12,6 +12,7 @@ RUN npm install --global yarn
 COPY Gemfile* /app/
 RUN gem update --system 3.3.5
 RUN gem install --force bundler -v '2.3.5'
+ENV BUNDLE_APP_CONFIG="/app/.bundle"
 RUN bundle install
 
 # If need run some script
