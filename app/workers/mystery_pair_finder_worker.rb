@@ -3,7 +3,7 @@ class MysteryPairFinderWorker < ActiveJob::Base
   queue_as :default
 
   def perform(*args)
-    three_month_pairs = MysteryPair.active.by_lunch_date(3.months.ago).group_by_user_id
+    three_month_pairs = MysteryPair.after_at(3.months.ago).group_by_user_id
     matcher = MysteryMatcher.new(User.active, three_month_pairs)
     matcher.find_mystery_pairs.each { |user, partner| create_pair_data!(user, partner) }
     partner1, partner2, odd_user = matcher.take_care_odd_user
@@ -13,7 +13,8 @@ class MysteryPairFinderWorker < ActiveJob::Base
     create_pair_data!(odd_user, partner2)
   end
 
+  # Job executes at 1st day of each month, so Date.today will be 1st day of that month
   def create_pair_data!(user, partner)
-    MysteryPair.create!(user_id: user[:id], partner_id: partner[:id], lunch_date: Date.today)
+    MysteryPair.create!(user_id: user[:id], partner_id: partner[:id], lunch_date: Date.today + 1.month)
   end
 end
