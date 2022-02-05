@@ -6,16 +6,8 @@ class MysteryPair < ApplicationRecord
     where('lunch_date > :value', value: value)
   }
 
-  scope :to_data_hash, lambda {
-    # TODO
-    # Improve with MysteryPair.pluck(:partner_id, :user_id).to_h and to make why all id is not in there
-    pair_hash = {}
-    id_pairs = pluck(:user_id, :partner_id)
-    id_pairs.each do |pairs|
-      pair_hash[pairs[0]] = pairs[1]
-      pair_hash[pairs[1]] = pairs[0]
-    end
-    pair_hash
+  scope :group_by_user_id, lambda {
+    all.group_by(&:user_id).transform_values { |pair| pair.pluck(:partner_id) }
   }
 
   scope :by_user, lambda { |user|

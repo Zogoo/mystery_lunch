@@ -74,12 +74,6 @@ Sidekiq scheduled job will run it every first day of each month at 00:00.
 Configuration: config/sidekiq.yml
 Data will be stored into MysteryPair table as self joined table.
 
-### BUGFIX ###
-
-Converting to old partner data into hash only storing to single user from multiple partner data.
-I should find another quick accessible way to convert that data.
-Query or Another search by loop will increase complexity to O(n^3)
-
 # Web service
 
 Mystery lunch web service will be devided as 3 parts

@@ -15,7 +15,6 @@ class MysteryMatcher
 
   def initialize(users, old_partners = {})
     self.users = users
-    # BUGFIX: Hash is only allowing to store only one user from several pairs
     self.old_partners = old_partners
     self.matching_data = {}
     @mystery_pairs = []
@@ -35,8 +34,10 @@ class MysteryMatcher
 
   def update_old_partners(partners)
     partners.each do |pair|
-      old_partners[pair[0]] = pair[1]
-      old_partners[pair[1]] = pair[0]
+      old_partners[pair[0]] = [] if old_partners[pair[0]].nil?
+      old_partners[pair[1]] = [] if old_partners[pair[1]].nil?
+      old_partners[pair[0]].push(pair[1])
+      old_partners[pair[1]].push(pair[0])
     end
   end
 
@@ -49,7 +50,9 @@ class MysteryMatcher
       users[(indx + 1)..(users.length - 1)].each do |partner|
         user_id = user.id
         partner_id = partner.id
-        next if old_partners[user_id] == partner_id || user.department == partner.department
+        # TODO: Introducing O(m) complexity in here
+        # Use better data structure which not require Array#include?
+        next if old_partners[user_id]&.include?(partner_id) || user.department == partner.department
 
         add_partner(user_id, partner_id)
         increase_connection(user_id)

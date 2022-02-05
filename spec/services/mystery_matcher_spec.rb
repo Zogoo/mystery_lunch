@@ -78,21 +78,23 @@ RSpec.describe MysteryMatcher do
          create(:user, id: 7, department: 'development and data'),
          create(:user, id: 8, department: 'development and data')]
       end
-      let(:converted_mystery_pair) {
+      let(:converted_mystery_pair) do
         {
-          5 => 1, 7 => 2, 8 => 3, 4 => 6,
-          1 => 5, 2 => 7, 3 => 8, 6 => 4
+          5 => [1], 7 => [2], 8 => [3], 4 => [6],
+          1 => [5], 2 => [7], 3 => [8], 6 => [4]
         }
-      }
+      end
       let(:described_object) { described_class.new(users, converted_mystery_pair) }
 
       it 'should not return old partner data' do
         expect(subject).not_to eq([
-                                [{ id: 5, department: 'development and data' }, { id: 1, department: 'operations' }],
-                                [{ id: 7, department: 'development and data' }, { id: 2, department: 'operations' }],
-                                [{ id: 8, department: 'development and data' }, { id: 3, department: 'risk' }],
-                                [{ id: 4, department: 'management' }, { id: 6, department: 'marketing' }]
-                              ])
+                                    [{ id: 5, department: 'development and data' },
+                                     { id: 1, department: 'operations' }],
+                                    [{ id: 7, department: 'development and data' },
+                                     { id: 2, department: 'operations' }],
+                                    [{ id: 8, department: 'development and data' }, { id: 3, department: 'risk' }],
+                                    [{ id: 4, department: 'management' }, { id: 6, department: 'marketing' }]
+                                  ])
       end
     end
 

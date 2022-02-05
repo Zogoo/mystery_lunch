@@ -3,7 +3,7 @@ class MysteryPairFinderWorker < ActiveJob::Base
   queue_as :default
 
   def perform(*args)
-    three_month_pairs = MysteryPair.active.by_lunch_date(3.months.ago).to_data_hash
+    three_month_pairs = MysteryPair.active.by_lunch_date(3.months.ago).group_by_user_id
     matcher = MysteryMatcher.new(User.all, three_month_pairs)
     matcher.find_mystery_pairs.each { |user, partner| create_pair_data!(user, partner) }
     partner1, partner2, odd_user = matcher.take_care_odd_user
