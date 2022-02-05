@@ -28,6 +28,7 @@ class Admin::UsersController < Admin::BaseController
 
     respond_to do |format|
       if @user.save
+        @user.add_for_future_pair!
         format.html { redirect_to admin_users_url(@user), notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -53,7 +54,7 @@ class Admin::UsersController < Admin::BaseController
   # DELETE /users/1 or /users/1.json
   def destroy
     @user.suspended!
-
+    @user.cancel_future_pair!
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully suspended.' }
       format.json { head :no_content }

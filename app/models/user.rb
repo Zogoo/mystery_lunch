@@ -39,4 +39,12 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def cancel_future_pair!
+    MysteryPair.remove_user(self)
+  end
+
+  def add_for_future_pair!
+    MysteryPair.add_user(self)
+  end
 end
