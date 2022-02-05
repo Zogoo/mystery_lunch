@@ -4,7 +4,7 @@ class MysteryPairFinderWorker < ActiveJob::Base
 
   def perform(*args)
     three_month_pairs = MysteryPair.active.by_lunch_date(3.months.ago).group_by_user_id
-    matcher = MysteryMatcher.new(User.all, three_month_pairs)
+    matcher = MysteryMatcher.new(User.active, three_month_pairs)
     matcher.find_mystery_pairs.each { |user, partner| create_pair_data!(user, partner) }
     partner1, partner2, odd_user = matcher.take_care_odd_user
     return if partner1.nil?

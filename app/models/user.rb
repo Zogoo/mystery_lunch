@@ -27,7 +27,7 @@ class User < ApplicationRecord
     where('lower(last_name) ~ :value', value: Regexp.escape(value.to_s.downcase.strip))
   }
 
-  # Email is not required to use it
+  # Email is not required since authenticating user with username 
   def email_required?
     false
   end
