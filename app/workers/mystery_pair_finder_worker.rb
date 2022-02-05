@@ -6,6 +6,8 @@ class MysteryPairFinderWorker < ActiveJob::Base
     three_month_pairs = MysteryPair.after_at(3.months.ago).group_by_user_id
     matcher = MysteryMatcher.new(User.active, three_month_pairs)
     matcher.find_mystery_pairs.each { |user, partner| create_pair_data!(user, partner) }
+
+    # If all user is odd then take care that user
     partner1, partner2, odd_user = matcher.take_care_odd_user
     return if partner1.nil?
 
