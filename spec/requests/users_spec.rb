@@ -13,16 +13,28 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe '/users', type: :request do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user, department: 'sales') }
 
   before do
-    post user_session_path, params: { username: user.username, password: '!QAZ2wsx' }
+    user.user!
+    sign_in user
   end
 
   describe 'GET /index' do
     it 'renders a successful response' do
       get users_url
       expect(response).to be_successful
+    end
+
+    context 'user user not signed in' do
+      before do
+        sign_out user
+      end
+
+      it 'will redirect to login page' do
+        get users_url
+        expect(response).to redirect_to(new_user_session_url)
+      end
     end
   end
 
@@ -41,18 +53,21 @@ RSpec.describe '/users', type: :request do
   end
 
   describe 'PATCH /update' do
-    context 'with valid parameters' do
-      let(:new_attributes) do
-        {
-          first_name: 'John',
-          last_name: 'Snow'
-        }
-      end
+    let(:new_attributes) do
+      {
+        first_name: 'John',
+        last_name: 'Snow',
+        department: 'risk'
+      }
+    end
 
-      it 'updates the requested user' do
+    context 'with valid parameters' do
+      it 'updates the requested user data expect deparment' do
         patch user_url(user), params: { user: new_attributes }
         user.reload
-        skip('Add assertions for updated state')
+        expect(user.first_name).to eq('John')
+        expect(user.last_name).to eq('Snow')
+        expect(user.department).not_to eq('risk')
       end
 
       it 'redirects to the user' do
@@ -63,9 +78,13 @@ RSpec.describe '/users', type: :request do
     end
 
     context 'with invalid parameters' do
+      let(:invalid_attribute) do
+        new_attributes.merge(username: '')
+      end
+
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        patch user_url(user), params: { user: { username: '' } }
-        expect(response).to be_successful
+        patch user_url(user), params: { user: invalid_attribute }
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
