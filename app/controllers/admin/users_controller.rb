@@ -5,7 +5,7 @@ class Admin::UsersController < Admin::BaseController
   # GET /users or /users.json
   def index
     page = params[:page] || 1
-    @users = User.order(:first_name).page(page)
+    @users = User.order(:first_name).by_department(search_value).page(page)
   end
 
   # GET /users/1 or /users/1.json
@@ -76,5 +76,9 @@ class Admin::UsersController < Admin::BaseController
       :email,
       :password
     )
+  end
+
+  def search_value
+    params.permit(:search_value)[:search_value]
   end
 end
