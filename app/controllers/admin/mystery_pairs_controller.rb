@@ -10,6 +10,6 @@ class Admin::MysteryPairsController < Admin::BaseController
   private
 
   def pair_parameter
-    parameter.require(:pair_id)
+    params.require(:pair_id)
   end
 end
