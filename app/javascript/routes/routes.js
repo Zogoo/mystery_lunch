@@ -3,7 +3,10 @@ import Router from "vue-router";
 
 const routerOptions = [
   { path: "/", component: "Landing" },
-  { path: "/signin", component: "SignIn" },
+  { path: "/signin", beforeEnter(to, from, next) {
+      window.location.replace("/users/sign_in")
+    }
+  },
   { path: "/about", component: "AboutUs" },
   { path: "*", component: "NotFound" }
 ];
