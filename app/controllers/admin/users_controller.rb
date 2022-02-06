@@ -29,7 +29,7 @@ class Admin::UsersController < Admin::BaseController
     respond_to do |format|
       if @user.save
         @user.add_for_future_pair!
-        format.html { redirect_to admin_users_url(@user), notice: 'User was successfully created.' }
+        format.html { redirect_to admin_users_url, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new, status: :unprocessable_entity }
