@@ -13,6 +13,10 @@ Web service features devided as following 3 sections
 3. Admin page - Company admin that able to control their user data and get statistics of lunch pair progress.
 
 For infra side I have added docker-compose file which makes easy to run in local env. Also it will allow to easily convert to AWS ECS.
+Once you have docker-compose file it will very easy to create Terraform script like this https://github.com/ajays1991/rails_terraform.
+
+I'm using bootstrap free components for UX to save time for create working prototype. It's always better to work with proferssional UX designer
+who has experience country that run this service.
 
 # How to run
 
