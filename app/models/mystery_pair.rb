@@ -32,6 +32,9 @@ class MysteryPair < ApplicationRecord
   def self.remove_user(user)
     ActiveRecord::Base.transaction do
       future_pairs = MysteryPair.after_at(Date.today).where(user_id: user.id)
+      # If there is no future pairs nothing need to do.
+      return unless future_pairs.present?
+
       future_partners = future_pairs.pluck(:partner_id)
       # If removing some one who already joined 3 pairs, exclude those users
       user_with_partners = MysteryPair.after_at(Date.today)
@@ -54,6 +57,9 @@ class MysteryPair < ApplicationRecord
   end
 
   def self.add_user(user)
+    # If there is no future pair data nothing need to do
+    return unless MysteryPair.after_at(Date.today).exists?
+
     pairs = MysteryPair.by_different_department(user)
     raise 'No pair found that user able to join' unless pairs.present?
 

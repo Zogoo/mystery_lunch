@@ -34,6 +34,19 @@ RSpec.describe MysteryPair, type: :model do
         expect(new_partners.include?(test_user.id)).to eq(false)
       end
     end
+
+    context 'when there is no future pair data' do
+      let(:mystery_pairs) { create_list(:mystery_pair, 10, lunch_date: 1.month.ago) }
+      let(:test_user) { mystery_pairs.first.user }
+      subject do
+        described_class.remove_user(test_user)
+      end
+
+      it 'will not remove any old data' do
+        expect { subject }.not_to raise_error
+        expect(MysteryPair.where(user_id: test_user.id).pluck(:partner_id).present?).to eq(true)
+      end
+    end
   end
 
   describe 'add user to existing pair' do
@@ -52,6 +65,20 @@ RSpec.describe MysteryPair, type: :model do
       it 'will add user to existing pair' do
         expect { subject }.not_to raise_error
         expect(MysteryPair.after_at(Date.today).by_user(new_user).present?).to eq(true)
+      end
+    end
+
+    context 'when there is no future pair data' do
+      let!(:mystery_pairs) { create_list(:mystery_pair, 10, lunch_date: 1.month.ago) }
+      let(:new_user) { create(:user, department: 'risk') }
+
+      subject do
+        described_class.add_user(new_user)
+      end
+
+      it 'will not add any future pair data' do
+        expect { subject }.to change(MysteryPair, :count).by(0)
+        expect(MysteryPair.after_at(Date.today).by_user(new_user).present?).to eq(false)
       end
     end
   end
