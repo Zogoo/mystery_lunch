@@ -104,7 +104,7 @@ Mystery lunch web service will be devided as 3 parts
 - Restricted area (requires authentication) - _Done._
 - Manage employees (index, display, create, edit and delete) - _Done._
 - Departments: operations, sales, marketing, risk, management, finance, HR, development and data - _Done, whitelisted logic_
-- The employee deletion should only disable the employee for future mystery lunches - _Done. User will be suspended not physically deleted from DB_
+- The employee deletion should only disable the employee for future mystery lunches - _Done. User will be suspended, not physically deleted from DB_
 - When an employee is created, he/she should join an existing mystery pair (3 people mystery lunch) - _Done. will add new user when user created_
 - When an employee is deleted:
       - This employee had one mystery partner: the remaining employee should join another existing mystery pair (3 people mystery lunch) - _Done._
