@@ -137,10 +137,10 @@ Must have
 - Automated tests - _Done. Github action used for execution_
 - Use your creativity and build a new feature of your choice _Done. admin/ user/ pages with additional features such as dashboard_
 
-# Things TODO (current status: 90%) and Priority
+# Things TODO (current status: 95%) and Priority
 1. ~~Finish all controller request tests - VeryHigh~~
 2. ~~Add scheduled job test - VeryHigh~~
-3. Add more corner tests for MysteryMatcher - High
+3. Add more corner tests for MysteryMatcher - Mid (Other cases covered by worker and controller tests)
 4. ~~Add suspension logic for user deletion - VeryHigh~~
    ~~User has status (active and suspended), MysteryPairFinderWorker only selecting active users.~~
    ~~So, I need to convert "deletion" logic to "suspension logic"~~

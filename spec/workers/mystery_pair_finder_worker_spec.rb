@@ -12,6 +12,7 @@ RSpec.describe MysteryPairFinderWorker, type: :worker do
       it 'will create pair data for next month' do
         expect { subject }.not_to raise_error
         expect(MysteryPair.after_at(Date.today).present?).to be(true)
+        expect(MysteryPair.count).to eq(10) # 2 way data e.g A-B, B-A
       end
     end
 
@@ -22,6 +23,7 @@ RSpec.describe MysteryPairFinderWorker, type: :worker do
         expect { subject }.not_to raise_error
         pairs_by_group = MysteryPair.after_at(Date.today).group(:partner_id).count
         expect(pairs_by_group.values.include?(2)).to be(true)
+        expect(MysteryPair.count).to eq(14)
       end
     end
 
