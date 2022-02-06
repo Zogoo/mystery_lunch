@@ -17,6 +17,16 @@
                         </div>
                     <% end %>
                 </div>
+                <div class="section-intro mb-3">Your next partner</div>
+                <div class="integration-list row justify-content-center py-5">
+                    <% @next_partners.each do |partner| %>
+                        <div class="item col-4 col-md-3 col-lg-2 mb-3 mb-lg-5 top-line-lg">
+                            <a href="<%= user_path(partner) %>">
+                                <img class="shadow rounded-circle" src="<%= partner.photo %>" alt="<%= partner.full_name %>">
+                            </a>
+                        </div>
+                    <% end %>
+                </div>
                 <!--//row-->
                 <div class="pt-3 text-center">
                     <%= link_to 'View More', users_path(:more => "true"), class: "btn btn-light" %>

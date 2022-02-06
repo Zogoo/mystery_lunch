@@ -1,14 +1,11 @@
 class Admin::UsersController < Admin::BaseController
-  include AuthorizationChecker
   layout 'application'
-  before_action :authenticate_user!
-  before_action :require_admin_previledge!
   before_action :set_user, only: %i[show edit update destroy]
 
   # GET /users or /users.json
   def index
     page = params[:page] || 1
-    @users = User.order(:first_name).page(page)
+    @users = User.order(:first_name).by_department(search_value).page(page)
   end
 
   # GET /users/1 or /users/1.json
@@ -79,5 +76,9 @@ class Admin::UsersController < Admin::BaseController
       :email,
       :password
     )
+  end
+
+  def search_value
+    params.permit(:search_value)[:search_value]
   end
 end

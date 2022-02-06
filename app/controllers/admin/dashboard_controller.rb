@@ -1,8 +1,5 @@
 class Admin::DashboardController < Admin::BaseController
-  include AuthorizationChecker
   layout 'admin'
-  before_action :authenticate_user!
-  before_action :require_admin_previledge!
 
   def index
     page = params[:page] || 1

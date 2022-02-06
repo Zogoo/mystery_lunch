@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
     get 'users/index'
     get 'dashboard/index'
+    resources :mystery_pairs, only: %i[index show]
     resources :users
   end
 end

@@ -1,0 +1,2 @@
+module Admin::MysteryPairsHelper
+end

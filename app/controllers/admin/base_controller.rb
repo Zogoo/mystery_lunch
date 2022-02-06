@@ -2,6 +2,9 @@ class Admin::BaseController < ApplicationController
   include AuthorizationChecker
   rescue_from Error::UnAuthorizedRequest, with: :respond_unauthorized_req
 
+  before_action :authenticate_user!
+  before_action :require_admin_previledge!
+
   def respond_unauthorized_req
     respond_to do |format|
       format.html do

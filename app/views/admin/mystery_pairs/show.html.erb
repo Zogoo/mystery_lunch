@@ -1,0 +1,85 @@
+<% user = @mystery_pair.user %>
+<% partner = @mystery_pair.partner %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card user-card">
+                <div class="card-header">
+                    <h5>Profile</h5>
+                </div>
+                <div class="card-block">
+                    <div class="user-image">
+                        <img src="<%= user.photo %>" class="img-radius" alt="User-Profile-Image">
+                    </div>
+                    <h6 class="f-w-600 m-t-25 m-b-10"><%= user.full_name %></h6>
+                    <p class="text-muted">Active | Male | Created <%= user.created_at %></p>
+                    <hr>
+                    <p class="text-muted m-t-15">Activity Level: 87%</p>
+                    <ul class="list-unstyled activity-leval">
+                        <li class="active"></li>
+                        <li class="active"></li>
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <div class="bg-c-blue counter-block m-t-10 p-20">
+                        <div class="row">
+                            <%# TODO: move it to controller logic prepare data in controller side %>
+                            <div class="col-4">
+                                <i class="fa fa-user"></i>
+                                <p><%= MysteryPair.where(user_id: user.id).count %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="m-t-15 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <hr>
+                    <div class="row justify-content-center user-social-link">
+                        <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
+                        <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+                        <div class="col-auto"><a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card user-card">
+                <div class="card-header">
+                    <h5>Profile</h5>
+                </div>
+                <div class="card-block">
+                    <div class="user-image">
+                        <img src="<%= partner.photo %>" class="img-radius" alt="User-Profile-Image">
+                    </div>
+                    <h6 class="f-w-600 m-t-25 m-b-10"><%= partner.full_name %></h6>
+                    <p class="text-muted">Active | Male | Created <%= partner.created_at %></p>
+                    <hr>
+                    <p class="text-muted m-t-15">Activity Level: 87%</p>
+                    <ul class="list-unstyled activity-leval">
+                        <li class="active"></li>
+                        <li class="active"></li>
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <div class="bg-c-green counter-block m-t-10 p-20">
+                        <div class="row">
+                            <%# TODO: move it to controller logic prepare data in controller side %>
+                            <div class="col-4">
+                                <i class="fa fa-user"></i>
+                                <p><%= MysteryPair.where(user_id: partner.id).count %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="m-t-15 text-muted">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <hr>
+                    <div class="row justify-content-center user-social-link">
+                        <div class="col-auto"><a href="#!"><i class="fa fa-facebook text-facebook"></i></a></div>
+                        <div class="col-auto"><a href="#!"><i class="fa fa-twitter text-twitter"></i></a></div>
+                        <div class="col-auto"><a href="#!"><i class="fa fa-dribbble text-dribbble"></i></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</div>
+</div>

@@ -1,5 +1,23 @@
 # Mystery lunch matching application
 
+https://github.com/Zogoo/mystery_lunch/actions/workflows/test.yml/badge.svg
+
+Mystery lunch service 
+
+Based on given requirement I planned to create prototype of full service and aimed to easy to keep improve.
+I decided to make performance handle 10K users as prototype scope of this web service.
+Web service features devided as following 3 sections
+
+1. home/index (root) - Landing page with dynamic JS. This will allow to customers get information about service without increasing web request.
+2. User page - To allow each employee to manage his data and check his next lunch partner
+3. Admin page - Company admin that able to control their user data and get statistics of lunch pair progress.
+
+For infra side I have added docker-compose file which makes easy to run in local env. Also it will allow to easily convert to AWS ECS.
+Once you have docker-compose file it will very easy to create Terraform script like this https://github.com/ajays1991/rails_terraform.
+
+I'm using bootstrap free components for UX to save time for create working prototype. It's always better to work with proferssional UX designer
+who has experience country that run this service.
+
 # How to run
 
 1. Build docker images with docker compose
@@ -86,26 +104,28 @@ Mystery lunch web service will be devided as 3 parts
    User can check his/her previous main page of user. http://localhost:3002/users
    ![plot](./docs/users_index.png)
    Also you can able to change your personal data expect your "department". Only admin can change your department.
-3. Admin panel (/admin/users, /admin/dashboard/index)
+3. Admin panel (/admin/users, /admin/dashboard/index, /admin/mystery_pairs)
    From dashboard page you can check number of user, department and each departments matching progress.
    Also you can filter progress by "department name"
    ![plot](./docs/admin_index.png)
    From user page you can do CRUD action for user
    ![plot](./docs/admin_users.png)
+   Admin user can check all mystery pairs
+   ![plot](./docs/admin_pair_list.png)
 
 # Work in progress
 
 1. Homepage
-- Display the current mystery partners  - _Back-end side feature is ready, only need to show next partner of next month_
+- Display the current mystery partners  - _Done. User able to see previous and next partner._
 - For every employee, display: photo, name and department name - _Done._
-- Filter by department - _Works in admin/dashboard. But also need to add into admin/users page_
+- Filter by department - _Done. Admin user able to search by department name_
 - Allow the user to see all mystery partners from previous months - _Done. user/index page will show all previous partners_
 2. Employees management
 - Restricted area (requires authentication) - _Done._
 - Manage employees (index, display, create, edit and delete) - _Done._
 - Departments: operations, sales, marketing, risk, management, finance, HR, development and data - _Done, whitelisted logic_
 - The employee deletion should only disable the employee for future mystery lunches - _Done. User will be suspended, not physically deleted from DB_
-- When an employee is created, he/she should join an existing mystery pair (3 people mystery lunch) - _Done. will add new user when user created_
+- When an employee is created, he/she should join an existing mystery pair (3 people mystery lunch) - _Done. will add new user into exsting pair when user created_
 - When an employee is deleted:
       - This employee had one mystery partner: the remaining employee should join another existing mystery pair (3 people mystery lunch) - _Done._
       - This employee had two mystery partners: nothing should be done - _Done._
@@ -114,22 +134,22 @@ Must have
 - The selection should be automatically performed on 1st day of each month  - _Done._
 - Two employees should not be selected to be partners if they were partners in the last 3 months  - _Done._
 - When the number of employees is odd, the remaining employee should join an existing mystery pair (3 people mystery lunch). The department of these three employees should be different. - _Done._
-- Automated tests - _Work In Progress_
-- Use your creativity and build a new feature of your choice _Work In Progress_
+- Automated tests - _Done. Github action used for execution_
+- Use your creativity and build a new feature of your choice _Done. admin/ user/ pages with additional features such as dashboard_
 
-# Things TODO (current status: 70%) and Priority
-1. Finish all controller request tests - VeryHigh
-2. Add scheduled job test - VeryHigh
-3. Add more corner tests for MysteryMatcher - VeryHigh
+# Things TODO (current status: 90%) and Priority
+1. ~~Finish all controller request tests - VeryHigh~~
+2. ~~Add scheduled job test - VeryHigh~~
+3. Add more corner tests for MysteryMatcher - High
 4. ~~Add suspension logic for user deletion - VeryHigh~~
    ~~User has status (active and suspended), MysteryPairFinderWorker only selecting active users.~~
    ~~So, I need to convert "deletion" logic to "suspension logic"~~
-5. Add new end-point for admin panel that show and filter Matching data - High
+5. ~~Add new end-point for admin panel that show and filter Matching data - High~~
 6. ~~Add logic for `When an employee is created, he/she should join an existing mystery pair (3 people mystery lunch)` and~~
    ~~call it admin creates new user and user register by himself.~~
 7. Add JS landing page (home/index) - High
 8. ~~Fix "Matching logic" BUGFIX mentioned above - High~~
-9.  Add search panel for Admin users list (admin/users/index) - High
+9.  ~~Add search panel for Admin users list (admin/users/index) - High~~
 10. Remove duplication of users page for admin and users - Low
 11. Add admin feature that convert normal user to admin user - Low
 12. Resolve CSS duplication - Low
