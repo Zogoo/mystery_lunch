@@ -1,5 +1,7 @@
 # Mystery lunch matching application
 
+https://github.com/Zogoo/mystery_lunch/actions/workflows/test.yml/badge.svg
+
 Mystery lunch service 
 
 Based on given requirement I planned to create prototype of full service and aimed to easy to keep improve.
