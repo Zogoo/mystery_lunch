@@ -112,9 +112,9 @@ Mystery lunch web service will be devided as 3 parts
 # Work in progress
 
 1. Homepage
-- Display the current mystery partners  - _Back-end side feature is ready, only need to show next partner of next month_
+- Display the current mystery partners  - _Done. User able to see previous and next partner._
 - For every employee, display: photo, name and department name - _Done._
-- Filter by department - _Works in admin/dashboard. But also need to add into admin/users page_
+- Filter by department - _Done. Admin user able to search by department name_
 - Allow the user to see all mystery partners from previous months - _Done. user/index page will show all previous partners_
 2. Employees management
 - Restricted area (requires authentication) - _Done._
@@ -136,7 +136,7 @@ Must have
 # Things TODO (current status: 90%) and Priority
 1. ~~Finish all controller request tests - VeryHigh~~
 2. ~~Add scheduled job test - VeryHigh~~
-3. Add more corner tests for MysteryMatcher - VeryHigh
+3. Add more corner tests for MysteryMatcher - High
 4. ~~Add suspension logic for user deletion - VeryHigh~~
    ~~User has status (active and suspended), MysteryPairFinderWorker only selecting active users.~~
    ~~So, I need to convert "deletion" logic to "suspension logic"~~
