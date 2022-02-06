@@ -19,6 +19,9 @@ class MysteryPairFinderWorker < ActiveJob::Base
 
   # Job executes at 1st day of each month, so Date.today will be 1st day of that month
   def create_pair_data!(user, partner)
-    MysteryPair.create!(user_id: user[:id], partner_id: partner[:id], lunch_date: Date.today + 1.month)
+    ActiveRecord::Base.transaction do
+      MysteryPair.create!(user_id: user[:id], partner_id: partner[:id], lunch_date: Date.today + 1.month)
+      MysteryPair.create!(user_id: partner[:id], partner_id: user[:id], lunch_date: Date.today + 1.month)
+    end
   end
 end
