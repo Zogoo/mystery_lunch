@@ -3,7 +3,6 @@ on: [push]
 jobs:
   run:
     runs-on: ubuntu-latest
-
     services:
       postgres:
         image: postgres:13.3-alpine3.14
@@ -24,6 +23,8 @@ jobs:
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: password
         REDIS_URL: redis://redis:6379/1
+        BUNDLE_PATH: vendor/bundle
+        BUNDLE_APP_CONFIG: .bundle
     steps:
       - uses: actions/checkout@v2
       - name: Cache node modules
@@ -31,7 +32,6 @@ jobs:
         env:
           cache-name: cache-node-modules
         with:
-          # npm キャッシュファイルは Linux/macOS の「~/.npm」に保存される
           path: ~/.npm
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
