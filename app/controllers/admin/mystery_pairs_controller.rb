@@ -1,6 +1,9 @@
 class Admin::MysteryPairsController < Admin::BaseController
+  layout 'admin'
+
   def index
-    @mystery_pairs = MysteryPair.all
+    page = params[:page] || 1
+    @mystery_pairs = MysteryPair.order(:lunch_date).page(page)
   end
 
   def show
@@ -10,6 +13,6 @@ class Admin::MysteryPairsController < Admin::BaseController
   private
 
   def pair_parameter
-    params.require(:pair_id)
+    params.require(:id)
   end
 end

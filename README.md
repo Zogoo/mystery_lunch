@@ -100,12 +100,14 @@ Mystery lunch web service will be devided as 3 parts
    User can check his/her previous main page of user. http://localhost:3002/users
    ![plot](./docs/users_index.png)
    Also you can able to change your personal data expect your "department". Only admin can change your department.
-3. Admin panel (/admin/users, /admin/dashboard/index)
+3. Admin panel (/admin/users, /admin/dashboard/index, /admin/mystery_pairs)
    From dashboard page you can check number of user, department and each departments matching progress.
    Also you can filter progress by "department name"
    ![plot](./docs/admin_index.png)
    From user page you can do CRUD action for user
    ![plot](./docs/admin_users.png)
+   Admin user can check all mystery pairs
+   ![plot](./docs/admin_pair_list.png)
 
 # Work in progress
 
