@@ -36,6 +36,8 @@ class UsersController < ApplicationController
     # Show previous partners
     @partner_ids = MysteryPair.by_user(current_user).before_at(Date.today).order(:lunch_date).pluck(:partner_id)
     @partners = User.where(id: @partner_ids)
+    @next_partner_ids = MysteryPair.by_user(current_user).after_at(Date.today).order(:lunch_date).pluck(:partner_id)
+    @next_partners = User.where(id: @next_partner_ids)
     @limit_show = params[:more].present? ? @partners.size : 10
   end
 

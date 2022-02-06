@@ -140,12 +140,12 @@ Must have
 4. ~~Add suspension logic for user deletion - VeryHigh~~
    ~~User has status (active and suspended), MysteryPairFinderWorker only selecting active users.~~
    ~~So, I need to convert "deletion" logic to "suspension logic"~~
-5. Add new end-point for admin panel that show and filter Matching data - High
+5. ~~Add new end-point for admin panel that show and filter Matching data - High~~
 6. ~~Add logic for `When an employee is created, he/she should join an existing mystery pair (3 people mystery lunch)` and~~
    ~~call it admin creates new user and user register by himself.~~
 7. Add JS landing page (home/index) - High
 8. ~~Fix "Matching logic" BUGFIX mentioned above - High~~
-9.  Add search panel for Admin users list (admin/users/index) - High
+9.  ~~Add search panel for Admin users list (admin/users/index) - High~~
 10. Remove duplication of users page for admin and users - Low
 11. Add admin feature that convert normal user to admin user - Low
 12. Resolve CSS duplication - Low
