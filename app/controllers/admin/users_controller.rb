@@ -1,8 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  include AuthorizationChecker
   layout 'application'
-  before_action :authenticate_user!
-  before_action :require_admin_previledge!
   before_action :set_user, only: %i[show edit update destroy]
 
   # GET /users or /users.json

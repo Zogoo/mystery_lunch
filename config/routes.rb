@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     end
     get 'users/index'
     get 'dashboard/index'
+    get 'mystery_pairs/index'
+    get 'mystery_pairs/show'
     resources :users
   end
 end

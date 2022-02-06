@@ -1,5 +1,17 @@
 # Mystery lunch matching application
 
+Mystery lunch service 
+
+Based on given requirement I planned to create prototype of full service and aimed to easy to keep improve.
+I decided to make performance handle 10K users as prototype scope of this web service.
+Web service features devided as following 3 sections
+
+1. home/index (root) - Landing page with dynamic JS. This will allow to customers get information about service without increasing web request.
+2. User page - To allow each employee to manage his data and check his next lunch partner
+3. Admin page - Company admin that able to control their user data and get statistics of lunch pair progress.
+
+For infra side I have added docker-compose file which makes easy to run in local env. Also it will allow to easily convert to AWS ECS.
+
 # How to run
 
 1. Build docker images with docker compose
@@ -105,7 +117,7 @@ Mystery lunch web service will be devided as 3 parts
 - Manage employees (index, display, create, edit and delete) - _Done._
 - Departments: operations, sales, marketing, risk, management, finance, HR, development and data - _Done, whitelisted logic_
 - The employee deletion should only disable the employee for future mystery lunches - _Done. User will be suspended, not physically deleted from DB_
-- When an employee is created, he/she should join an existing mystery pair (3 people mystery lunch) - _Done. will add new user when user created_
+- When an employee is created, he/she should join an existing mystery pair (3 people mystery lunch) - _Done. will add new user into exsting pair when user created_
 - When an employee is deleted:
       - This employee had one mystery partner: the remaining employee should join another existing mystery pair (3 people mystery lunch) - _Done._
       - This employee had two mystery partners: nothing should be done - _Done._
@@ -114,12 +126,12 @@ Must have
 - The selection should be automatically performed on 1st day of each month  - _Done._
 - Two employees should not be selected to be partners if they were partners in the last 3 months  - _Done._
 - When the number of employees is odd, the remaining employee should join an existing mystery pair (3 people mystery lunch). The department of these three employees should be different. - _Done._
-- Automated tests - _Work In Progress_
-- Use your creativity and build a new feature of your choice _Work In Progress_
+- Automated tests - _Done. Github action used for execution_
+- Use your creativity and build a new feature of your choice _Done. admin/ user/ pages with additional features such as dashboard_
 
-# Things TODO (current status: 70%) and Priority
-1. Finish all controller request tests - VeryHigh
-2. Add scheduled job test - VeryHigh
+# Things TODO (current status: 90%) and Priority
+1. ~~Finish all controller request tests - VeryHigh~~
+2. ~~Add scheduled job test - VeryHigh~~
 3. Add more corner tests for MysteryMatcher - VeryHigh
 4. ~~Add suspension logic for user deletion - VeryHigh~~
    ~~User has status (active and suspended), MysteryPairFinderWorker only selecting active users.~~
